@@ -55,3 +55,5 @@ This command will execute the plan and commit all the new resources or changes t
 ### Validate and Deploy
 Once the Terraform script has completed, all the necessary policies and profiles for your Cisco HyperFlex cluster will appear in your Cisco Intersight management UI, shown in the Policies section and the Profiles section. 
 View the new HyperFlex profile in Intersight, and use the Intersight UI to begin a Validation or Deployment of the newly created cluster.
+
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/ucs-compute-solutions/terraform-intersight-hyperflex)
