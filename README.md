@@ -7,7 +7,7 @@ The Cisco Intersight Terraform provider is now available for use direcly from th
 
 ## Installation
 
-- Terraform 0.13.0 or later must be installed
+- Terraform 0.14.0 or later must be installed
 - Access to the Terraform registry via the internet must be available
 
 Clone or fork the terraform-intersight-hyperflex repository to create a local copy of the scripts to work with.
