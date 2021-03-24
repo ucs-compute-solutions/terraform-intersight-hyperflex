@@ -1,0 +1,1 @@
+variable "intersight_organization_name" {}

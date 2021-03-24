@@ -14,15 +14,36 @@ variable "api_endpoint" {
   default = "https://www.intersight.com"
 }
 
+variable "intersight_organization_name" {
+  type = string
+  description = "The name of the Intersight organization where the HX cluster profile and policies will be created in. The organization must also contain the FIs and servers to be deployed as part of this cluster"
+}
+
 variable "cluster_name" {
   type = string
   description = "This is the name of the HyperFlex cluster in Intersight and vCenter"
 }
 
-variable "management_platform" {
+# variable "cluster_action" {
+#   type = string
+#   description = "The action to take on the HX profile after all the configuration is set. Valid options for this script are Validate or Deploy."
+# }
+
+variable "edge_cluster" {
+  type = bool
+  description = "Set this variable to true when installing an HX Edge cluster, otherwise set to false. This variable defaults to false."
+  default = "false"
+}
+
+variable "replication" {
+  type = number
+  description = "The replication factor setting for the HX cluster"
+  default = "3"
+}
+
+variable "uplink_speed" {
   type = string
-  description = "The type of HX cluster being deployed, either standard managed by FIs, or Edge"
-  default = "Edge"
+  description = "The speed of the uplinks of an HX Edge cluster. Valid options for this are 1G or 10G."
 }
 
 variable "hx_mgmt_ip" {
@@ -35,9 +56,9 @@ variable "mac_prefix" {
   description = "The MAC address prefix in the form of 00:25:B5:XX"
 }
 
-variable "wwxn_prefix" {
+variable "storage_vlan_name" {
   type = string
-  description = "The WWXN prefix in the form of 20:00:00:25:B5:XX"
+  description = "The name of the HX storage VLAN in the UCSM configuration"
 }
 
 variable "storage_vlan_id" {
@@ -50,6 +71,11 @@ variable "hxdp_version" {
   description = "The version of Cisco HyperFlex to install in the form of 4.x(xx)"
 }
 
+variable "firmware_version" {
+  type = string
+  description = "The UCSM firmware package version to apply to the servers in the form of 4.x(xx)"
+}
+
 variable "factory_password" {
   type = bool
   description = "Does the ESXi hypervisor installed on the HX series nodes use the factory applied password?"
@@ -58,6 +84,7 @@ variable "factory_password" {
 
 variable "hx_password" {
   type = string
+  sensitive = true
   description = "The password to set for the HX controller VMs and cluster management"
 }
 
@@ -69,6 +96,7 @@ variable "esx_admin" {
 
 variable "esx_password" {
   type = string
+  sensitive = true
   description = "the password to set for the ESXi hypervisors' admin account"
 }
 
@@ -124,6 +152,12 @@ variable "vdi_opt" {
   default = "false"
 }
 
+variable "laz_config" {
+  type = bool
+  description = "Enable Logical Availability Zones"
+  default = "false"
+}
+
 variable "node_prefix" {
   type = string
   description = "Prefix for the names of the nodes as assigned to ESXi"
@@ -172,13 +206,32 @@ variable "mgmt_gateway" {
 variable "jumbo_frame" {
   type = bool
   description = "Enable jumbo frames for HX storage traffic"
-  default = "false"
+  default = "true"
 }
 
-variable "uplink_speed" {
-  type = bool
-  description = "Set the uplink link speed for HX Edge servers to either 1G or 10G"
-  default = "1G"
+variable "kvm_ip_start" {
+  type = string
+  description = "UCSM management IP address range start"
+}
+
+variable "kvm_ip_end" {
+  type = string
+  description = "UCSM management IP address range end"
+}
+
+variable "kvm_netmask" {
+  type = string
+  description = "UCSM management IP subnet mask"
+}
+
+variable "kvm_gateway" {
+  type = string
+  description = "UCSM management default gateway"
+}
+
+variable "mgmt_vlan_name" {
+  type = string
+  description = "ESXi management VLAN name"
 }
 
 variable "mgmt_vlan_id" {
@@ -186,8 +239,22 @@ variable "mgmt_vlan_id" {
   description = "ESXi management VLAN ID"
 }
 
-variable "server_names" {
+variable "vmotion_vlan_name" {
+  type = string
+  description = "VMotion VLAN name"
+}
+
+variable "vmotion_vlan_id" {
+  type = number
+  description = "VMotion VLAN ID"
+}
+
+variable "vm_vlans" {
   type = list
+  description = "Guest VM VLAN names and IDs"
+}
+
+variable "server_names" {
 }
 
 variable "additional_vNICs" {
@@ -201,7 +268,6 @@ variable "iscsi_vlan_a_name" {
 }
 
 variable "iscsi_vlan_a_id" {
-  type = number
   description = "iSCSI VLAN A ID"
 }
 
@@ -211,7 +277,6 @@ variable "iscsi_vlan_b_name" {
 }
 
 variable "iscsi_vlan_b_id" {
-  type = number
   description = "iSCSI VLAN B ID"
 }
 
@@ -226,7 +291,6 @@ variable "fc_vsan_a_name" {
 }
 
 variable "fc_vsan_a_id" {
-  type = number
   description = "FC VSAN A ID"
 }
 
@@ -236,8 +300,12 @@ variable "fc_vsan_b_name" {
 }
 
 variable "fc_vsan_b_id" {
-  type = number
   description = "FC VSAN B ID"
+}
+
+variable "wwxn_prefix" {
+  type = string
+  description = "The WWXN prefix in the form of 20:00:00:25:B5:XX"
 }
 
 variable "fc_wwxn_range_start" {
@@ -271,6 +339,16 @@ variable "proxy_hostname" {
 }
 
 variable "proxy_port" {
-  type = number
   description = "Proxy server port number"
+}
+
+variable "proxy_username" {
+  type = string
+  description = "Proxy server username"
+}
+
+variable "proxy_password" {
+  type = string
+  sensitive = true
+  description = "Proxy server password"
 }
