@@ -21,6 +21,7 @@ resource "intersight_hyperflex_node_profile" "hyperflex_node_profile" {
   hxdp_mgmt_ip = var.hx_ip
   assigned_server {
     moid = data.intersight_compute_physical_summary.server_moid.results[0].moid
+    object_type = "compute.RackUnit"
   }
   cluster_profile {
     moid = var.cluster_moid
