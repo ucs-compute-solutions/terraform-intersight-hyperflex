@@ -71,7 +71,6 @@ variable "vmotion_vlan_name" {
 }
 
 variable "vmotion_vlan_id" {
-  type = number
   description = "VMotion VLAN ID"
 }
 
