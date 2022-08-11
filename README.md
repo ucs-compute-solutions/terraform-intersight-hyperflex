@@ -5,6 +5,9 @@ Installation scripts for Cisco HyperFlex using the Cisco Intersight Terraform pr
 
 The Cisco Intersight Terraform provider is now available for use direcly from the Terraform Registry at https://registry.terraform.io/providers/CiscoDevNet/intersight/latest.
 
+Full instructions for use of this repository can be found in the Cisco HyperFlex Edge with ACI and Terraform CVD here:
+https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/hx_edge_4_5_aci_terraform.html
+
 ## Installation
 
 - Terraform 0.14.0 or later must be installed
