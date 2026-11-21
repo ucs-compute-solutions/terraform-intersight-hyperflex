@@ -78,7 +78,7 @@ kvm_gateway = "10.29.133.1"
 # VCenter
 vcenter_hostname = "vcenter.hx.lab.cisco.com"
 vcenter_username = "administrator@vsphere.local"
-vcenter_password = "!Q2w3e4r"
+vcenter_password = 
 vcenter_datacenter = "Datacenter" 
 
 # VMotion
