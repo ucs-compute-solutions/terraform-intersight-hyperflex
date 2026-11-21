@@ -46,13 +46,13 @@ hxdp_version = "4.5(1a)"
 firmware_version = ""
 
 # HX password
-hx_password = "CIsco123!!"
+hx_password = 
 
 # ESXi admin account
 esx_admin = "root"
 
 # ESXi admin password
-esx_password = "CIsco123!!"
+esx_password = 
 
 # ESXi Management IP
 node_prefix = "hxaf240m5sd"
