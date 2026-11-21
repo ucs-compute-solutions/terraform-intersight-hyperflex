@@ -46,13 +46,13 @@ hxdp_version = "4.5(1a)"
 firmware_version = "4.1(3b)"
 
 # HX password
-hx_password = "CIsco123!!"
+hx_password = 
 
 # ESXi admin account
 esx_admin = "root"
 
 # ESXi admin password
-esx_password = "CIsco123!!"
+esx_password = 
 
 # ESXi Management IP
 node_prefix = "hx220m5"
@@ -160,7 +160,7 @@ proxy_enable = "true"
 proxy_hostname = "proxy.company.com"
 proxy_port = "80"
 proxy_username = "proxy"
-proxy_password = "password"
+proxy_password = 
 
 
 server_names = {
